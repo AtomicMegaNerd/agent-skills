@@ -1,5 +1,5 @@
 ---
-skill: Go Task
+name: Go Task
 description: Using the Task build tooling for Go
 allowed-tools: Read Edit Write Glob Grep Bash(task:*)
 ---

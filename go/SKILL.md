@@ -1,5 +1,5 @@
 ---
-name: go
+name: Go
 description: A skill for effective Go programming
 allowed-tools: Read Edit Write Glob Grep
 ---
