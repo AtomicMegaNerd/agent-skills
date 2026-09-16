@@ -111,9 +111,87 @@ One task can depend on another:
 deps: [check-deps]
 ```
 
+## Run Modes
+
+Control whether a task runs once, always, or per unique vars:
+
+```yaml
+tasks:
+  install-deps:
+    run: once # runs only once per invocation
+  generate:
+    run: when_changed # runs once per unique set of vars
+```
+
+## For Loops
+
+Loop over lists, matrices, sources, or generates:
+
+```yaml
+tasks:
+  deploy:
+    cmds:
+      - for: [dev, staging, prod]
+        cmd: deploy.sh {{.ITEM}}
+```
+
+## Conditional Execution
+
+Skip a task or command when a condition fails (does not error):
+
+```yaml
+tasks:
+  deploy:
+    if: '[ "$CI" = "true" ]'
+    cmds:
+      - echo "Deploying..."
+```
+
+## Deferred Cleanup
+
+Run a command after a task finishes (even on error). Multiple defers run in reverse order.
+
+```yaml
+tasks:
+  test:
+    cmds:
+      - defer: docker compose down
+      - docker compose up -d
+      - go test ./...
+```
+
+## Required Vars with Allowed Values
+
+Ensure variables are set to one of a predefined set:
+
+```yaml
+tasks:
+  deploy:
+    requires:
+      vars:
+        - name: ENV
+          enum: [dev, staging, prod]
+    cmds:
+      - echo "Deploying to {{.ENV}}"
+```
+
+## Wildcard Tasks
+
+Match multiple task names with a pattern:
+
+```yaml
+tasks:
+  start-*:
+    cmds:
+      - docker compose up {{index .MATCH 0}}
+```
+
 ## Links
 
-| Link                                                | When to Use                                            |
-| --------------------------------------------------- | ------------------------------------------------------ |
-| [Taskfile Guide](https://taskfile.dev/docs/guide)   | When we need information not coveredf in this document |
-| [Taskfile Schema](https://taskfile.dev/schema.json) | In rare cases we need to check the schema              |
+| Link                                                                 | When to Use                                                                          |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| [Taskfile Guide](https://taskfile.dev/docs/guide)                    | When we need information not covered in this document                                |
+| [Taskfile Schema](https://taskfile.dev/schema.json)                  | In rare cases we need to check the schema                                            |
+| [Task v3.51.1](https://github.com/go-task/task/releases/tag/v3.51.1) | `absPath`, `joinEnv`, `joinUrl` template funcs; large Taskfile performance boost     |
+| [Task v3.52.0](https://github.com/go-task/task/releases/tag/v3.52.0) | `secret: true` for masking vars, `use_gitignore`, `--temp-dir`, Azure DevOps remotes |
+| [Task v3.53.1](https://github.com/go-task/task/releases/tag/v3.53.1) | Remote Taskfiles GA, per-command timeout, Nushell completions, faster fingerprinting |

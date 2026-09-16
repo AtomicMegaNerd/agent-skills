@@ -11,6 +11,16 @@ allowed-tools: Read Edit Bash(golangci-lint:*)
 - Whenever we are running or configuring the linter.
 - When formatting the code.
 
+## Commands
+
+| Command                    | What it does                                   |
+| -------------------------- | ---------------------------------------------- |
+| `golangci-lint run`        | Run linters configured in `.golangci.yml`      |
+| `golangci-lint fmt`        | Run formatters configured in `.golangci.yml`   |
+| `golangci-lint run --fix`  | Run linters and apply auto-fixes               |
+| `golangci-lint run ./...`  | Run linters on all packages                    |
+| `golangci-lint fmt --diff` | Show formatting diffs without applying changes |
+
 ## Golangci-Lint Configuration
 
 We want to enforce 100 column lines. This is the recommended config:
@@ -35,6 +45,3 @@ formatters:
       # Shorten single-line comments.
       shorten-comments: true
 ```
-
-
-

@@ -43,10 +43,15 @@ Always check the stdlib first. All of these are available in modern Go:
 
 ## Links
 
-| Link                                                                        | When to Use                                                            |
-| --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [Go Standard Library](https://pkg.go.dev/std)                               | When looking up functions in the standard library                      |
-| [Go Release Notes](https://go.dev/doc/devel/release)                        | When checking which features are supported in a specific version of Go |
-| [Go By Example](https://gobyexample.com/)                                   | Examples of idiomatic Go                                               |
-| [errgroup Package](https://pkg.go.dev/golang.org/x/sync/errgroup)           | Documentation on `errgroup` package                                    |
-| [semaphore Package](https://pkg.go.dev/golang.org/x/sync@v0.20.0/semaphore) | Documentation on `semaphore` package                                   |
+| Link                                                                        | When to Use                                                                                                |
+| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [Go Standard Library](https://pkg.go.dev/std)                               | When looking up functions in the standard library                                                          |
+| [Go 1.24 Release Notes](https://go.dev/doc/go1.24)                          | Generic type aliases, `weak` package, `omitzero`, FIPS 140-3, `os.Root`                                    |
+| [Go 1.25 Release Notes](https://go.dev/doc/go1.25)                          | Container-aware GOMAXPROCS, `WaitGroup.Go`, `synctest`, trace flight recorder, experimental `json/v2`      |
+| [Go 1.26 Release Notes](https://go.dev/doc/go1.26)                          | `new` with initializer, `go fix` modernizers, goroutine leak profile, `errors.AsType`, experimental SIMD   |
+| [Go 1.27 Release Notes](https://go.dev/doc/go1.27)                          | Generic methods, Struct literal key selector improvements, `json/v2` stable, `uuid` package, portable SIMD |
+| [Go Release Notes](https://go.dev/doc/devel/release)                        | Index of all Go release notes                                                                              |
+| [Go By Example](https://gobyexample.com/)                                   | Examples of idiomatic Go                                                                                   |
+| [encoding/json/v2](https://pkg.go.dev/encoding/json/v2)                     | New `encoding/json/v2` API — `Marshal`, `Unmarshal` with variadic `Options`                                |
+| [errgroup Package](https://pkg.go.dev/golang.org/x/sync/errgroup)           | Documentation on `errgroup` package                                                                        |
+| [semaphore Package](https://pkg.go.dev/golang.org/x/sync@v0.20.0/semaphore) | Documentation on `semaphore` package                                                                       |

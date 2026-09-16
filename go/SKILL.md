@@ -6,7 +6,7 @@ allowed-tools: Read Edit Write Glob Grep
 
 # Idiomatic Go
 
-Idiomatic Go patterns and best practices (Go >=1.26).
+Idiomatic Go patterns and best practices. **Current version of Go is 1.27.**
 
 ## When to Activate
 
@@ -68,7 +68,31 @@ func FetchAll(urls []string, maxConcurrent int) error {
 
 ## Configuration and Struct Design
 
-Use **Functional Options** pattern when a struct has many optional config params
+### Struct Embedding
+
+- Struct literal keys can be any valid field selector (Go 1.27+), not just top-level field names.
+  Embedding a struct no longer forces you to repeat the type name as a key — you can use the
+  embedded fields directly.
+- This works for multiple levels of nesting.
+
+```go
+type Config struct {
+    Address string
+}
+
+type Server struct {
+    Config              // embedded
+    Port    int
+}
+
+// Before Go 1.27 — had to use the embedded type as key:
+s := Server{Config: Config{Address: ":8080"}, Port: 443}
+
+// Go 1.27+ — can use embedded fields directly:
+s := Server{Address: ":8080", Port: 443}
+```
+
+### Use Functional Options pattern when a struct has many optional config params
 
 ```go
 type Server struct {
@@ -133,12 +157,12 @@ func NewServer(addr string, opts ...Option) *Server {
 
 Always use modern syntax and best practices.
 
-- Range over integer syntax `for i := range 10`
+- Range over integer syntax `for i := range 10` (Go 1.22+)
 - Use `any` instead of `interface{}`
 - range variables are now per-iteration (no need to shadow loop variables in closures)
 
 ## Reference
 
-More information here.
+More information here. This document is helpful for discussing changes to the language over time.
 
 See [./references/reference.md](./references/reference.md)

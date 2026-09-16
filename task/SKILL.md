@@ -20,7 +20,7 @@ This creates a new `Taskfile.yml` file which is the default for Go projects.
 
 ## Basics
 
-To any any task (replace <TASKNAME> with the name of the task.
+To run any task (replace <TASKNAME> with the name of the task.
 
 ```bash
 task <TASKNAME>
@@ -28,19 +28,19 @@ task <TASKNAME>
 
 ## Commonly Used Tasks
 
-## Build
+### Build
 
 ```bash
 task build
 ```
 
-## Run Tests
+### Run Tests
 
 ```bash
 task test
 ```
 
-## Run Lints
+### Run Lints
 
 ```bash
 task lint
