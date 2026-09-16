@@ -1,5 +1,5 @@
 ---
-name: go-task
+name: rcd-go-task
 description: Using the Task build tooling for Go
 ---
 

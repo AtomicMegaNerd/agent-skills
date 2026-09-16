@@ -1,5 +1,5 @@
 ---
-name: go
+name: rcd-golang
 description: A skill for effective Go programming
 ---
 

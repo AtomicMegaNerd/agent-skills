@@ -1,5 +1,5 @@
 ---
-name: golangci-lint
+name: rcd-golangci-lint
 description: Using the Linter on our Go Programs
 ---
 
