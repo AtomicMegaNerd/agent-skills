@@ -1,7 +1,6 @@
 ---
 name: go-task
 description: Using the Task build tooling for Go
-allowed-tools: Read Edit Write Glob Grep Bash(task:*)
 ---
 
 # Task Go Build Tool
