@@ -1,5 +1,5 @@
 ---
-name: Golangci-Lint
+name: golangci-lint
 description: Using the Linter on our Go Programs
 allowed-tools: Read Edit Bash(golangci-lint:*)
 ---
