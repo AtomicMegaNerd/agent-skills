@@ -1,33 +1,38 @@
-# rcd-agent-skills
+# RCD Agent Skills
 
-A collection of basic skills.
+A collection of basic agent skills.
 
-Lots more to come!
+## List of Skills
 
-## Home Manager
+- [rcd-golang](./rcd-golang/SKILL.md)
+- [rcd-golangci-lint](./rcd-golangci-lint/SKILL.md)
+- [rcd-go-task](./rcd-go-task/SKILL.md)
 
-Add this repository as a flake input and import its Home Manager module:
+## Nix Setup (Home Manager)
+
+Add the repository to your main flake's `inputs` and add `rcd-agent-skills` to the flake output:
 
 ```nix
-inputs.rcd-agent-skills.url = "github:AtomicMegaNerd/agent-skills";
-
-# In your Home Manager modules:
-imports = [ inputs.rcd-agent-skills.homeManagerModules.default ];
-programs.rcd-agent-skills.agent = "opencode";
+rcd-agent-skills.url = "github:AtomicMegaNerd/agent-skills";
 ```
 
-The `programs.rcd-agent-skills.agent` option is required and currently supports
-`opencode`. The module links each skill directory into `~/.config/opencode/skills`.
+In the `modules` list passed to your existing Home Manager configuration, add the module and enable
+it for the agents you use:
 
-## List of Tasks
+```nix
+modules = [
+  ./home.nix
+  rcd-agent-skills.homeManagerModules.default
+];
+```
 
-- [Go](./rcd-golang/SKILL.md)
-- [Golangci-lint](./rcd-golangci-lint/SKILL.md)
-- [Task](./rcd-go-task/SKILL.md)
+Then in your home-manager config:
 
-## Credits
-
-Thanks to the following sources for inspiration:
-
-- [https://github.com/spf13/go-skills](https://github.com/spf13/go-skills) the Go skill is largely
-  based on this.
+```nix
+{
+    programs.rcd-agent-skills = {
+      enable = true;
+      agents = [ "opencode" ];
+    };
+}
+```

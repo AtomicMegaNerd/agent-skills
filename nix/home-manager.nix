@@ -16,8 +16,14 @@ in
 {
   imports = [ (import ./options.nix { inherit agentPaths; }) ];
 
-  config.xdg.configFile = lib.mapAttrs' (name: source: {
-    name = "${agentPaths.${cfg.agent}}/${name}";
-    value = { inherit source; };
-  }) skills;
+  config = lib.mkIf cfg.enable {
+    xdg.configFile = lib.foldl' (
+      files: agent:
+      files
+      // lib.mapAttrs' (name: source: {
+        name = "${agentPaths.${agent}}/${name}";
+        value = { inherit source; };
+      }) skills
+    ) { } cfg.agents;
+  };
 }
