@@ -2,10 +2,7 @@
 let
   cfg = config.programs.rcd-agent-skills;
 
-  # Add an agent here to make its skills directory selectable.
-  agentPaths = {
-    opencode = "opencode/skills";
-  };
+  skillsDir = ".agents/skills";
 
   skills = {
     rcd-golang = ../rcd-golang;
@@ -14,16 +11,12 @@ let
   };
 in
 {
-  imports = [ (import ./options.nix { inherit agentPaths; }) ];
+  imports = [ ./options.nix ];
 
   config = lib.mkIf cfg.enable {
-    xdg.configFile = lib.foldl' (
-      files: agent:
-      files
-      // lib.mapAttrs' (name: source: {
-        name = "${agentPaths.${agent}}/${name}";
-        value = { inherit source; };
-      }) skills
-    ) { } cfg.agents;
+    home.file = lib.mapAttrs' (name: source: {
+      name = "${skillsDir}/${name}";
+      value = { inherit source; };
+    }) skills;
   };
 }
